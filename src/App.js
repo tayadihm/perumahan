@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import Navbar from "./components/Navbar";
+import Contact from "./pages/Contact";
+import { Route, Routes } from "react-router-dom";
+import Properties from "./pages/Properties";
+import Home from "./pages/Home";
+import Aos from "aos";
+import About from "./pages/About";
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/properties" element={<Properties />} />
+        <Route path="/about-us" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;
